@@ -80,12 +80,19 @@ def ticTactToeStart():
     showTable(boardGame)
     playerTurn = playerFirst
     coupPlayerTurn = coupPlayerFirst
+    coupAlreadyMade = []
     while winJ1 == False and winJ2 == False :
-        print(" ")
+        # print("AAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ")
         print("Tour de : ", playerTurn)
-        row = int(input("Entrez un numéro de ligne : "))
-        col = int(input("Entrez un numéro de colonne : "))
+        coupAvailable = False
+        while coupAvailable == False:
+            row = int(input("Entrez un numéro de ligne : "))
+            col = int(input("Entrez un numéro de colonne : "))
+            if not([row,col] in coupAlreadyMade):
+                coupAlreadyMade.append([row,col])
+                coupAvailable = True
         print(" ")
+
         changeElement(boardGame,row,col,coupPlayerTurn)
         showTable(boardGame)
 
