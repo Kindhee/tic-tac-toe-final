@@ -12,56 +12,51 @@ def changeElement(board, row, col, coup):
 def playerGoingFirst():
     playerStarting = randint(1,2)
 
-###########################
-     # checking rows
 def playerWin(board, player):
-        win = None
-        n = len(board)
-        for i in range(n):
-            win = True
-            for j in range(n):
-                if board[i][j] != player:
-                    win = False
-                    break
-            if win:
-                return win
-
-        # checking columns
-        for i in range(n):
-            win = True
-            for j in range(n):
-                if board[j][i] != player:
-                    win = False
-                    break
-            if win:
-                return win
-
-        # checking diagonals
+    win = None
+    n = len(board)
+    for i in range(n):
         win = True
-        for i in range(n):
-            if board[i][i] != player:
+        for j in range(n):
+            if board[i][j] != player:
                 win = False
                 break
         if win:
             return win
 
+    for i in range(n):
         win = True
-        for i in range(n):
-            if board[i][n - 1 - i] != player:
+        for j in range(n):
+            if board[j][i] != player:
                 win = False
                 break
         if win:
             return win
-        return False
+
+    win = True
+    for i in range(n):
+        if board[i][i] != player:
+            win = False
+            break
+    if win:
+        return win
+
+    win = True
+    for i in range(n):
+        if board[i][n - 1 - i] != player:
+            win = False
+            break
+    if win:
+        return win
+    return False
 
 def boardFilled(board):
-        for row in board:
-            for item in row:
-                if item == '-':
-                    return False
-        return True
+    for row in board:
+        for item in row:
+            if item == '-':
+                return False
+    return True
 
-###########################
 def ticTactToeStart():
     print("Vous avez démarré une partie de Tic Tac Toe !")
     winJ1 = False
@@ -101,7 +96,7 @@ def ticTactToeStart():
         if boardFilled(boardGame):
             print("Egalité !")
             break 
-    
+
         if playerTurn == playerFirst :
             playerTurn = playerSecond
             coupPlayerTurn = coupPlayerSecond
