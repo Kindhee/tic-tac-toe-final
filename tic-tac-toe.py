@@ -57,12 +57,12 @@ def boardFilled(board):
                 return False
     return True
 
-def ticTactToeStart():
+def ticTactToeStart(namePlayer1 = str, namePlayer2 = str):
     print("Vous avez démarré une partie de Tic Tac Toe !")
     winJ1 = False
     winJ2 = False
-    namePlayer1 = input("Rentrez le nom du J1 : ")
-    namePlayer2 = input("Rentrez le nom du J2 : ")
+    # namePlayer1 = input("Rentrez le nom du J1 : ")
+    # namePlayer2 = input("Rentrez le nom du J2 : ")
     indexPlayer = playerGoingFirst()
     if indexPlayer == 1 :
         print("Le J1 : " + str(namePlayer1) + " commence !")
@@ -112,6 +112,12 @@ def ticTactToeStart():
         else :
             playerTurn = playerFirst
             coupPlayerTurn = coupPlayerFirst
+    replay = input("Rejouez ? ( y ) yes ou ( n ) no ")
+    if replay == "y":
+        ticTactToeStart(namePlayer1, namePlayer2)
+    else:
+        print("Fin du jeu !")
 
 
-ticTactToeStart()
+
+ticTactToeStart("Romain", "Gabriel")
