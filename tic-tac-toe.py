@@ -78,6 +78,7 @@ def ticTactToeStart():
     print(" ")
     boardGame = [['-','-','-'],['-','-','-'],['-','-','-']]
     showTable(boardGame)
+    print(" ")
     playerTurn = playerFirst
     coupPlayerTurn = coupPlayerFirst
     coupAlreadyMade = []
@@ -95,6 +96,7 @@ def ticTactToeStart():
 
         changeElement(boardGame,row,col,coupPlayerTurn)
         showTable(boardGame)
+        print(" ")
 
         if playerWin(boardGame, coupPlayerTurn):
             print(str(playerFirst) + " a gagné la partie !")
