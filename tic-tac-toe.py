@@ -10,7 +10,7 @@ def changeElement(board, row, col, coup):
         board[row][col] = coup
 
 def playerGoingFirst():
-    playerStarting = randint(1,2)
+    return randint(1,2)
 
 def playerWin(board, player):
     win = None
@@ -57,8 +57,9 @@ def boardFilled(board):
                 return False
     return True
 
-def ticTactToeStart(namePlayer1 = str, namePlayer2 = str):
+def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
     print("Vous avez démarré une partie de Tic Tac Toe !")
+    print(" ")
     winJ1 = False
     winJ2 = False
     # namePlayer1 = input("Rentrez le nom du J1 : ")
@@ -68,7 +69,7 @@ def ticTactToeStart(namePlayer1 = str, namePlayer2 = str):
         print("Le J1 : " + str(namePlayer1) + " commence !")
         playerFirst = namePlayer1
         playerSecond = namePlayer2
-    else:
+    elif indexPlayer == 2 :
         print("Le J2 : " + str(namePlayer2) + " commence !")
         playerFirst = namePlayer2
         playerSecond = namePlayer1
@@ -86,24 +87,38 @@ def ticTactToeStart(namePlayer1 = str, namePlayer2 = str):
         # print("AAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ")
         print("Tour de : ", playerTurn)
         coupAvailable = False
+        validationTest = False
         while coupAvailable == False:
-            row = int(input("Entrez un numéro de ligne : "))
-            col = int(input("Entrez un numéro de colonne : "))
-            if not([row,col] in coupAlreadyMade):
-                coupAlreadyMade.append([row,col])
-                coupAvailable = True
-        print(" ")
-
-        changeElement(boardGame,row,col,coupPlayerTurn)
+            while validationTest == False : 
+                print("Entrez un numéro de ligne : ")
+                row = int(input(" > "))
+                print("Entrez un numéro de colonne : ")
+                col = int(input(" > "))
+                if not([row,col] in coupAlreadyMade):
+                    coupAlreadyMade.append([row,col])
+                    coupAvailable = True
+                print(" ")
+                try :
+                    changeElement(boardGame,row,col,coupPlayerTurn)
+                    break
+                except IndexError :
+                    print("Coup non valide rentrez un nombre entre 0 et 2")
+                    print(" ")
         showTable(boardGame)
         print(" ")
 
         if playerWin(boardGame, coupPlayerTurn):
-            print(str(playerFirst) + " a gagné la partie !")
+            print(str(playerTurn) + " a gagné la partie !")
+            if playerTurn == namePlayer1 :
+                scoreJ1 += 1
+            else :
+                scoreJ2 += 1
+            print(" ")
             break
 
         if boardFilled(boardGame):
             print("Egalité !")
+            print(" ")
             break 
 
         if playerTurn == playerFirst :
@@ -112,12 +127,19 @@ def ticTactToeStart(namePlayer1 = str, namePlayer2 = str):
         else :
             playerTurn = playerFirst
             coupPlayerTurn = coupPlayerFirst
-    replay = input("Rejouez ? ( y ) yes ou ( n ) no ")
+
+    print("Rejouez ? ( y ) yes ou ( n ) no ")
+    replay = input(" > ")
     if replay == "y":
-        ticTactToeStart(namePlayer1, namePlayer2)
+        print("Score de " + str(namePlayer1) + " : " + str(scoreJ1))
+        print("Score de " + str(namePlayer2) + " : " + str(scoreJ2))
+        print(" ")
+        ticTactToeStart(namePlayer1, namePlayer2, scoreJ1, scoreJ2 )
     else:
+        print(" ")
+        print("Score final de " + str(namePlayer1) + " : " + str(scoreJ1))
+        print("Score final de " + str(namePlayer2) + " : " + str(scoreJ2))
+        print(" ")
         print("Fin du jeu !")
-
-
 
 ticTactToeStart("Romain", "Gabriel")
