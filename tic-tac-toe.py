@@ -1,6 +1,6 @@
 from random import randint
 
-def showTable(boardCreated):
+def showBoardGame(boardCreated):
         for row in boardCreated:
             for item in row:
                 print(item, end="  ")
@@ -62,8 +62,6 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
     print(" ")
     winJ1 = False
     winJ2 = False
-    # namePlayer1 = input("Rentrez le nom du J1 : ")
-    # namePlayer2 = input("Rentrez le nom du J2 : ")
     indexPlayer = playerGoingFirst()
     if indexPlayer == 1 :
         print("Le J1 : " + str(namePlayer1) + " commence !")
@@ -78,7 +76,7 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
     print("Début de la partie !")
     print(" ")
     boardGame = [['-','-','-'],['-','-','-'],['-','-','-']]
-    showTable(boardGame)
+    showBoardGame(boardGame)
     print(" ")
     playerTurn = playerFirst
     coupPlayerTurn = coupPlayerFirst
@@ -97,14 +95,15 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
                 if not([row,col] in coupAlreadyMade):
                     coupAlreadyMade.append([row,col])
                     coupAvailable = True
+                    validationTest = True
+            print(" ")
+            try :
+                changeElement(boardGame,row,col,coupPlayerTurn)
+                break
+            except IndexError :
+                print("Coup non valide rentrez un nombre entre 0 et 2")
                 print(" ")
-                try :
-                    changeElement(boardGame,row,col,coupPlayerTurn)
-                    break
-                except IndexError :
-                    print("Coup non valide rentrez un nombre entre 0 et 2")
-                    print(" ")
-        showTable(boardGame)
+        showBoardGame(boardGame)
         print(" ")
 
         if playerWin(boardGame, coupPlayerTurn):
@@ -141,5 +140,6 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
         print("Score final de " + str(namePlayer2) + " : " + str(scoreJ2))
         print(" ")
         print("Fin du jeu !")
+        print(" ")
 
 ticTactToeStart("Romain", "Gabriel")
