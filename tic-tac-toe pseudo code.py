@@ -109,7 +109,7 @@
                 # on créer une condition if qui teste si [row,col] n'est pas déjâ dans la liste coupAlreadyMade
                     # alors
                     # on ajoute [row,col] dans notre liste coupAlreadyMade
-                    # on change la valeur de coupAvailable a True
+                    # on quitte la boucle
 
                 # ! affichage purement esthétique !
                 # on teste

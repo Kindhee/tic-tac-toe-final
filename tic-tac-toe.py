@@ -195,23 +195,23 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
                     # alors
                     # on ajoute [row,col] dans notre liste coupAlreadyMade
                     coupAlreadyMade.append([row,col])
-                    # on change la valeur de coupAvailable a True
-                    coupAvailable = True             
+                    # on quitte la boucle     
+                    break            
 
+            # ! affichage purement esthétique !
+            print(" ")
+            # on teste
+            try :
+                # on appelle la fonction changeElement avec comme arguments boardGame notre plateau de jeu, row notre numéro de ligne, col notre numéro de colonne et coupPlayerTurn son coup soit 'X' soit 'O'
+                changeElement(boardGame,row,col,coupPlayerTurn)
+                # on quitte la boucle
+                break
+            # si l'erreur IndexError est renvoyé 
+            except IndexError :
+                # on affiche "Coup non valide rentrez un nombre entre 0 et 2"
+                print("Coup non valide rentrez un nombre entre 0 et 2")
                 # ! affichage purement esthétique !
                 print(" ")
-                # on teste
-                try :
-                    # on appelle la fonction changeElement avec comme arguments boardGame notre plateau de jeu, row notre numéro de ligne, col notre numéro de colonne et coupPlayerTurn son coup soit 'X' soit 'O'
-                    changeElement(boardGame,row,col,coupPlayerTurn)
-                    # on quitte la boucle
-                    break
-                # si l'erreur IndexError est renvoyé 
-                except IndexError :
-                    # on affiche "Coup non valide rentrez un nombre entre 0 et 2"
-                    print("Coup non valide rentrez un nombre entre 0 et 2")
-                    # ! affichage purement esthétique !
-                    print(" ")
         # on appelle notre fonction showBoardGame() avec en argument notre plateau de jeu boardGame
         showBoardGame(boardGame)
         # ! affichage purement esthétique !
