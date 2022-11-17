@@ -288,7 +288,7 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
         # ! affichage purement esthétique !
         print(" ")
 
-# on appel notre fonction ticTactToeStart() avec en arguments les noms des deux joueurs en str ("nom joueur 1", "nom joueur 2")
+# on appel notre fonction ticTactToeStart() avec en arguments les noms des deux joueurs en str ("nom joueur 1", "nom joueur 2") on peut aussi préciser scoreJ1 et scoreJ2 en arguments pour commencer avec des points dans les scores de chacun
 ticTactToeStart("Romain", "Gabriel")
 
 # FIN
