@@ -131,6 +131,7 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
     # on donne la valeur retournée par la fonction playerGoingFirst() a une varibale indexPlayer
     indexPlayer = playerGoingFirst()
     # on créer une condition if qui teste si indexPlayer est égale a 1
+
     if indexPlayer == 1 :
         # alors
         # on affiche "Le J1 : (nom du joueur 1) commence !"
@@ -147,6 +148,7 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
         playerFirst = namePlayer2
         # on donne la chaine de caractères namePlayer1 a la variable playerSecond
         playerSecond = namePlayer1
+        
     # on donne la chaine de caractères 'X' a la variable coupPlayerFirst
     coupPlayerFirst = 'X'
     # on donne la chaine de caractères 'O' a la variable coupPlayerSecond
@@ -168,6 +170,7 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
     # on défini une liste vide coupAlreadyMade
     coupAlreadyMade = []
     # on créer une boucle while qui se répète tant que winJ1 ou winJ2 sont égale a False
+
     while winJ1 == False or winJ2 == False :
         # on affiche "Tour de : (nom joueur jouant a ce tour)"
         print("Tour de : ", playerTurn)
@@ -193,23 +196,22 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
                     # on ajoute [row,col] dans notre liste coupAlreadyMade
                     coupAlreadyMade.append([row,col])
                     # on change la valeur de coupAvailable a True
-                    coupAvailable = True
-                    # on change la valeur de validationTest a True
-                    validationTest = True
-            # ! affichage purement esthétique !
-            print(" ")
-            # on teste
-            try :
-                # on appelle la fonction changeElement avec comme arguments boardGame notre plateau de jeu, row notre numéro de ligne, col notre numéro de colonne et coupPlayerTurn son coup soit 'X' soit 'O'
-                changeElement(boardGame,row,col,coupPlayerTurn)
-                # on quitte la boucle
-                break
-            # si l'erreur IndexError est renvoyé 
-            except IndexError :
-                # on affiche "Coup non valide rentrez un nombre entre 0 et 2"
-                print("Coup non valide rentrez un nombre entre 0 et 2")
+                    coupAvailable = True             
+
                 # ! affichage purement esthétique !
                 print(" ")
+                # on teste
+                try :
+                    # on appelle la fonction changeElement avec comme arguments boardGame notre plateau de jeu, row notre numéro de ligne, col notre numéro de colonne et coupPlayerTurn son coup soit 'X' soit 'O'
+                    changeElement(boardGame,row,col,coupPlayerTurn)
+                    # on quitte la boucle
+                    break
+                # si l'erreur IndexError est renvoyé 
+                except IndexError :
+                    # on affiche "Coup non valide rentrez un nombre entre 0 et 2"
+                    print("Coup non valide rentrez un nombre entre 0 et 2")
+                    # ! affichage purement esthétique !
+                    print(" ")
         # on appelle notre fonction showBoardGame() avec en argument notre plateau de jeu boardGame
         showBoardGame(boardGame)
         # ! affichage purement esthétique !
