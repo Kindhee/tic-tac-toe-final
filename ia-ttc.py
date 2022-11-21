@@ -67,8 +67,7 @@
                 # ia joue [x,y]
             ## si on joue un coup qui n'aligne pas deux de nos coups
             # if joueur canWin != True
-                ## l'ia aligne son deuxieme coup avec son premier et un espace vide
-                # 
+                ## l'ia aligne son deuxieme coup avec son premier et un espace vide 
 ## troisieme tour
 # if turn == 3:
     ## si possibilité de gagner == True 
@@ -76,11 +75,10 @@
         ## gagner 
         # ia joue [x,y]
     ## si joueur possibilité de gagner == True
-    # if joueur canWin == True a [x,y]:
+    # if joueur canWin == True a [x,y] :
         ## bloquer 
         # ia joue [x,y]
     ## sinon 
-    #
+    # if joueur canWin != True :
         ## jouer pour aligner / remplir
-        #
-
+        # ia joue [...,...]
