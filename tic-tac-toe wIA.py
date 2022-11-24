@@ -168,6 +168,7 @@ def canWin(board, player):
     # on retourne une liste vide 
     return []
 
+# on défini une fonction iaPlay() avec comme arguments board qui est notre plateau de jeu, iaCoup le coup de l'ia, player le coup du joueur, turn le tour actuel et coupAlreadyMade les coups deja pris dans le tableau  / cette fonction permet de faire jouer notre ia
 def iaPlay(board, iacoup, player, turn, coupAlreadyMade):
     # premier tour
     # si turn == 1
@@ -213,7 +214,9 @@ def iaPlay(board, iacoup, player, turn, coupAlreadyMade):
                     if board[0][0] == player and board[2][2] == player or board[0][2] == player and board[2][0] == player :
                         coupAlreadyMade.append([1,0]) 
                         return changeElement(board, 1, 0, iacoup)
+                    # sinon
                     else:
+                        # conditions pratiques pour s'aligner le mieux possible en fonction des deux coups exact du joueur
                         if board[0][0] == player and board[2][1] == player:
                             coupAlreadyMade.append([1, 2]) 
                             return changeElement(board, 1, 2, iacoup)
@@ -238,6 +241,7 @@ def iaPlay(board, iacoup, player, turn, coupAlreadyMade):
                         if board[2][2] == player and board[0][1] == player:
                             coupAlreadyMade.append([1, 0]) 
                             return changeElement(board, 1, 0, iacoup)
+                        
     # troisieme tour et quatrième
     # si turn == 3 ou 4
     if turn == 3 or turn == 4:
@@ -285,96 +289,160 @@ def ticTactToeStart(namePlayer1, scoreJ1 = 0, scoreJ2 = 0):
     coupPlayerSecond = 'O'
     # on affiche "Début de la partie !"
     print("Début de la partie !")
+    # on attribut la valeur de 1 a la variable turn
     turn = 1
     # ! affichage ésthétique ! 
     print(" ")
+    # on créer une liste de 3 listes contenant chacune trois élément '-' dans notre variable boardGame
     boardGame = [['-','-','-'],['-','-','-'],['-','-','-']]
+    # on affiche la variable boardGame a l'aide de la fonction showBoard(), cela affiche notre tableau de jeu
     showBoardGame(boardGame)
     # ! affichage ésthétique ! 
     print(" ")
+    # on attribut la valeur de la variable playerFirst a la variable playerTurn
     playerTurn = playerFirst
+    # on attribut la valeur de la variable coupPlayerFirst a la variable coupPlayerTurn
     coupPlayerTurn = coupPlayerFirst
+    # on défini une variable coupAlreadyMade qui est une liste vide
     coupAlreadyMade = []
+    # on créer une boucle while qui se répete tant que winJ1 et winJ2 sont égale a False
     while winJ1 == False or winJ2 == False :
+        # on affiche "Tour de : ( nom du joueur jouant )"
         print("Tour de : ", playerTurn)
+        # on affiche "Coup actuel : ( coup du joueur jouant )"
         print("Coup actuel : ", coupPlayerTurn)
+        # si playerTurn est égal a namePlayer1
         if playerTurn == namePlayer1:
+            # alors
+            # on met la variable coupAvailable a False
             coupAvailable = False
+            # on met la variable validationTest a False
             validationTest = False
+            # on créer une boucle while qui se répete tant que coupAvailable est égal a False
             while coupAvailable == False:
+                # on créer une boucle while qui se répete tant que validationTest est égal a False
                 while validationTest == False : 
-                    print("Entrez un numéro de ligne : ")                  
-                    row = int(input(" > "))                  
-                    print("Entrez un numéro de colonne : ")                  
+                    # on affiche "Entrez un numéro de ligne : "
+                    print("Entrez un numéro de ligne : ")     
+                    # on assigne a la variable row la valeur donné suite a un input du joueur             
+                    row = int(input(" > "))      
+                    # on affiche "Entrez un numéro de colonne : "
+                    print("Entrez un numéro de colonne : ") 
+                    # on assigne a la variable col la valeur donné suite a un input du joueur                  
                     col = int(input(" > "))                   
-                    if not([row,col] in coupAlreadyMade):                                              
-                        coupAlreadyMade.append([row,col])                     
+                    # si notre couple [row,col] n'est pas dans notre liste coupAlreadyMade
+                    if not([row,col] in coupAlreadyMade):                                 
+                        # alors
+                        # on ajoute [row,col] a notre liste coupAlreadyMade             
+                        coupAlreadyMade.append([row,col])                  
+                        # on sort de la boucle   
                         break  
                 # ! affichage ésthétique !              
                 print(" ")
+                # on essaie avec try
                 try :
+                    # on appel la fonction changeElement() avec en commentaire boardGame qui est notre plateau de jeu, row le numéro de ligne, col le numéro de colonne et coupPlayerTurn le coup du joueur qui joue ce tour
                     changeElement(boardGame,row,col,coupPlayerTurn)
+                    # on sort de la boucle 
                     break
+                # si l'erreur IndexEroor nous es renvoyé 
                 except IndexError :
+                    # alors 
+                    # on affiche "Coup non valide rentrez un nombre entre 0 et 2"
                     print("Coup non valide rentrez un nombre entre 0 et 2")
                     # ! affichage ésthétique ! 
                     print(" ")
+            
+            # on affiche la variable boardGame a l'aide de la fonction showBoard(), cela affiche notre tableau de jeu
             showBoardGame(boardGame)
             # ! affichage ésthétique ! 
             print(" ")
 
+        # sinon si playerSecond est égal a namePlayer2
         elif playerSecond == namePlayer2:
+            # on appelle notre fonction iaPlay() avec comme arguments boardGame notre plateau de jeu, coupPlayerSecond le coup du J2, coupPlayerFirst le coup du J1, turn le tour actuel et coupAlreadyMade les coups déja faits sur le plateau
             iaPlay(boardGame, coupPlayerSecond, coupPlayerFirst, turn, coupAlreadyMade) 
+            # on ajoute +1 la variable turn
             turn += 1  
             # ! affichage ésthétique ! 
             print(" ")
+            # on affiche la variable boardGame a l'aide de la fonction showBoard(), cela affiche notre tableau de jeu
             showBoardGame(boardGame)
             # ! affichage ésthétique ! 
             print(" ")
 
+        # si la fonction playerWin() renvoie True 
         if playerWin(boardGame, coupPlayerTurn):
+            # alors
+            # on affiche "(nom du joueur gagnant) a gagné la partie !"
             print(str(playerTurn) + " a gagné la partie !")
+            # si playerTurn est égal a namePlayer1
             if playerTurn == namePlayer1 : 
+                # on ajoute +1 a notre variable scoreJ1
                 scoreJ1 += 1   
-            else :               
+            # sinon
+            else : 
+                # on ajoute +1 a notre variable scoreJ2              
                 scoreJ2 += 1
             # ! affichage ésthétique ! 
             print(" ")
+            # on sort de la boucle
             break
 
+        # si la fonction boardFilled() renvoie True
         if boardFilled(boardGame):  
+            # on affiche "Egalité !"
             print("Egalité !")     
             # ! affichage ésthétique ! 
             print(" ")       
+            # on sort de la boucle 
             break     
         
-        if playerTurn == playerFirst :          
+        # si playerTurn est égal a playerFirst
+        if playerTurn == playerFirst :        
+            # alors
+            # on passe la valeur de playerTurn a PlayerSecond  
             playerTurn = playerSecond           
+            # on passe la valeur de coupPlayerTurn a coupPlayerSecond  
             coupPlayerTurn = coupPlayerSecond
+        # sinon
         else :
+            # on passe la valeur de playerTurn a playerFirst  
             playerTurn = playerFirst
+            # on passe la valeur de coupPlayerTurn a coupPlayerFirst  
             coupPlayerTurn = coupPlayerFirst
 
-    
+    # on affiche "Rejouez ? ( y ) yes ou ( n ) no "
     print("Rejouez ? ( y ) yes ou ( n ) no ")
+    # on donne la valeur de l'input du joueur a la variable replay
     replay = input(" > ")
 
+    # si replay est égal a "y"
     if replay == "y":
+        # alors 
+        # on affiche "Score de (nom j1) : (scorej1) "
         print("Score de " + str(namePlayer1) + " : " + str(scoreJ1))
+        # alors on affiche "Score de (nom j2) : (scorej2) "
         print("Score de " + str(namePlayer2) + " : " + str(scoreJ2))
         # ! affichage ésthétique ! 
         print(" ")
+        # on rappel notre fonction ticTacToeStart() de maniere recursive avec comme arguments namePlayer1 le nom du J1, scoreJ1 et scoreJ2
         ticTactToeStart(namePlayer1, scoreJ1, scoreJ2 )
 
+    # sinon
     else:
         # ! affichage ésthétique ! 
         print(" ")
+        # on affiche "Score final de (nom j1) : (scorej1) "
         print("Score final de " + str(namePlayer1) + " : " + str(scoreJ1))
+        # on affiche "Score final de (nom j1) : (scorej1) "
         print("Score final de " + str(namePlayer2) + " : " + str(scoreJ2))
         # ! affichage ésthétique ! 
         print(" ")
+        # on affiche "Fin du Jeu"
         print("Fin du jeu !")
         # ! affichage ésthétique ! 
         print(" ")
 
-ticTactToeStart("Gabriel")
+# on appelle notre fonction ticTactToeStart() avec comme argument notre nom de joueur / cet appel sert a lancer le jeu
+ticTactToeStart("Joueur")
