@@ -1,4 +1,4 @@
-from random import randint
+# DEBUT
 
 # on déini une fonction showBoardGame() avec comme argument boardCreated qui est le plateau de jeu créer / elle sert a afficher le tableau de jeu
 def showBoardGame(boardCreated):
@@ -446,3 +446,5 @@ def ticTactToeStart(namePlayer1, scoreJ1 = 0, scoreJ2 = 0):
 
 # on appelle notre fonction ticTactToeStart() avec comme argument notre nom de joueur / cet appel sert a lancer le jeu
 ticTactToeStart("Joueur")
+
+# FIN
