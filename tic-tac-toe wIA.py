@@ -329,7 +329,25 @@ def ticTactToeStart(namePlayer1, scoreJ1 = 0, scoreJ2 = 0):
                     # on affiche "Entrez un numéro de colonne : "
                     print("Entrez un numéro de colonne : ") 
                     # on assigne a la variable col la valeur donné suite a un input du joueur                  
-                    col = int(input(" > "))                   
+                    col = int(input(" > "))           
+
+                    # EASTER EGG
+                    if row == 666 and col == 666:
+                        changeElement(boardGame,0,0,'6')
+                        changeElement(boardGame,0,1,'6')
+                        changeElement(boardGame,0,2,'6')
+                        changeElement(boardGame,1,0,'6')
+                        changeElement(boardGame,1,1,'6')
+                        changeElement(boardGame,1,2,'6')
+                        changeElement(boardGame,2,0,'6')
+                        changeElement(boardGame,2,1,'6')
+                        changeElement(boardGame,2,2,'6')
+                        print(" ")
+                        showBoardGame(boardGame)
+                        print(" ")
+                        return 
+                    # FIN EASTER EGG
+                        
                     # si notre couple [row,col] n'est pas dans notre liste coupAlreadyMade
                     if not([row,col] in coupAlreadyMade):                                 
                         # alors

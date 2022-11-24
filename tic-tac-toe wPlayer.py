@@ -190,6 +190,24 @@ def ticTactToeStart(namePlayer1, namePlayer2, scoreJ1 = 0, scoreJ2 = 0):
                 print("Entrez un numéro de colonne : ")
                 # on demande un input en int dans la variable col qui sera le numéro de colonne
                 col = int(input(" > "))
+
+                # EASTER EGG
+                if row == 666 and col == 666:
+                    changeElement(boardGame,0,0,'6')
+                    changeElement(boardGame,0,1,'6')
+                    changeElement(boardGame,0,2,'6')
+                    changeElement(boardGame,1,0,'6')
+                    changeElement(boardGame,1,1,'6')
+                    changeElement(boardGame,1,2,'6')
+                    changeElement(boardGame,2,0,'6')
+                    changeElement(boardGame,2,1,'6')
+                    changeElement(boardGame,2,2,'6')
+                    print(" ")
+                    showBoardGame(boardGame)
+                    print(" ")
+                    return 
+                # FIN EASTER EGG
+
                 # on créer une condition if qui teste si [row,col] n'est pas déjâ dans la liste coupAlreadyMade
                 if not([row,col] in coupAlreadyMade):
                     # alors
